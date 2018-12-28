@@ -23,7 +23,6 @@
     </thead>
 
         <script>
-            var counter = 0
             var a=[]
         </script>
     {% for row in rows %}
@@ -37,6 +36,8 @@
             <input id ="{{row}}" type="text" >
             <button onclick="create()">create room </button> 
             <button onclick="join()">join room</button>
+           <button onclick="webSocketChat()">Web Socket Chat </button> 
+            
         </div>
 
         
@@ -70,8 +71,18 @@
                 }
             }
         }
+        function webSocketChat() {
+            for (var i=0 ; i < a.length ; i++)
+            {
+
+                var name = document.getElementById(a[i]).value;
+                if (name != "")
+                {
+                    window.location="/chat/"+name;
+                }
+            }
+        }
         </script>
-<a href="/">Go back to home page</a>
 
 </body>
 </html>

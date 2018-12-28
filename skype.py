@@ -134,18 +134,6 @@ def list():
     return render_template("list.html", rows=namelist)
 
 
-
-
-
-
-# @app.route('/waitorjoin', methods=['POST'])
-# def addContactProcess():
-#     if request.method == 'POST':
-#         if 'username' in session:
-#             username = session['username']
-            # con = sqlite3.connect("skype")
-            
-
 @app.route("/wait/<Cid>")
 def waitPage(Cid):
     print ("Wait")
@@ -157,8 +145,6 @@ def joinPage(Cid):
     print ("Join")
     print (Cid)
     return render_template("join.html", name=Cid)
-
-
 
 
 if __name__ == '__main__':
