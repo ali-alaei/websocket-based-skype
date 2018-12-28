@@ -16,8 +16,8 @@
 
 <table border=1>
     <thead>
-    <td>Name</td>
-    <td>join></td>
+    <td>Contact</td>
+    <td>SSE</td>
     <!--<td>city</td>-->
     <!--<td>Pincode</td>-->
     </thead>
@@ -36,11 +36,35 @@
             <input id ="{{row}}" type="text" >
             <button onclick="create()">create room </button> 
             <button onclick="join()">join room</button>
-           <button onclick="webSocketChat()">Web Socket Chat </button> 
             
-        </div>
+        </div>  
+        </td>
+    </tr>
+    {% endfor %}
+</table>
 
-        
+
+<table border=1>
+    <thead>
+    <td>Contact </td>
+    <td>Chat </td>
+    <!--<td>city</td>-->
+    <!--<td>Pincode</td>-->
+    </thead>
+
+        <script>
+            var a=[]
+        </script>
+    {% for row in rows %}
+    <tr>
+        <script>
+            a.push('{{row}}')
+        </script>
+        <td>{{row}}</td>
+        <td>
+        <div> 
+           <button id ="{{row}}" onclick="webSocketChat(this.id)">Web Socket Chat </button>             
+        </div>  
         </td>
     </tr>
     {% endfor %}
@@ -52,6 +76,7 @@
             for (var i=0 ; i < a.length ; i++)
             {
                 var name = document.getElementById(a[i]).value;
+
                 if (name != "")
                 {
                     window.location="/wait/"+name;
@@ -71,16 +96,18 @@
                 }
             }
         }
-        function webSocketChat() {
-            for (var i=0 ; i < a.length ; i++)
-            {
-
-                var name = document.getElementById(a[i]).value;
-                if (name != "")
+        function webSocketChat(clickedId) {
+                var contactname = clickedId;
+                var myname = "{{myname}}"
+                
+                if ( myname > contactname )
                 {
-                    window.location="/chat/"+name;
+                    window.location="/chat/"+contactname+myname;
                 }
-            }
+                else
+                {
+                    window.location="/chat/"+myname+contactname;
+                }
         }
         </script>
 
